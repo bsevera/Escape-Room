@@ -27,6 +27,7 @@ public class DrainGrateLock : MonoBehaviour
         int index = key.IndexOf(letter);
         if (index > -1)
         {
+            Debug.Log("Enabling the letter '" + letter + "' at index " + index.ToString());
             _LetterCanvases[index].SetActive(true);
             CheckKeyCountdown(index + 1);
         }
