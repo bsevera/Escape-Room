@@ -1,21 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class DrainGrateLock : MonoBehaviour
 {
     private string key = "ZURN";
 
     [SerializeField]
-    private GameObject[] _LetterCanvases = new GameObject[4];
+    private GameObject[] _Letters = new GameObject[4];
     [SerializeField]
     private AudioSource _AudioSource;
+    [SerializeField]
+    private PlayableDirector _DrainGrateDirector;
 
     private int _KeyCountDown = 0;
 
     public void Start()
     {
-        for (int i = 0; i < _LetterCanvases.Length; i++)
+        for (int i = 0; i < _Letters.Length; i++)
         {
             _KeyCountDown += (i + 1);
         }
@@ -28,7 +31,7 @@ public class DrainGrateLock : MonoBehaviour
         if (index > -1)
         {
             Debug.Log("Enabling the letter '" + letter + "' at index " + index.ToString());
-            _LetterCanvases[index].SetActive(true);
+            _Letters[index].SetActive(true);
             CheckKeyCountdown(index + 1);
         }
     }
@@ -42,7 +45,8 @@ public class DrainGrateLock : MonoBehaviour
         if (_KeyCountDown == 0)
         {
             //Play grate opening audio and animate grate opening
-            _AudioSource.Play();
+            //_AudioSource.Play();
+            _DrainGrateDirector.Play();
         }
     }
 

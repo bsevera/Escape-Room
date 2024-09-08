@@ -8,7 +8,10 @@ public class ZURNLetter : MonoBehaviour
     [SerializeField]
     private TMP_Text _letter;
 
-    [SerializeField] private GameObject _DrainGrate = null;
+    [SerializeField] 
+    private GameObject _DrainGrate = null;
+
+    [SerializeField]
     private DrainGrateLock _DrainGrateLock;
 
     private AudioSource _AudioSource;
@@ -23,11 +26,13 @@ public class ZURNLetter : MonoBehaviour
 
     public void IlluminateLetter()
     {
+        Debug.Log("Illuminate Letter" + _letter.text.ToString());
         Color tmpColor = _letter.color;
-        _letter.alpha = 1;
+        _letter.alpha = 42;
 
         if (!_LetterFound)
         {
+            Debug.Log("Letter '" + _letter.text.ToString() + "' was found");
             _LetterFound = true;
             _DrainGrateLock.EnableLetter(_letter.text);
             _AudioSource.time = 1;
