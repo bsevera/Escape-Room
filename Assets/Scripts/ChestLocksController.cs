@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class ChestLocksController : MonoBehaviour
 {
@@ -14,16 +15,14 @@ public class ChestLocksController : MonoBehaviour
     [SerializeField]
     private GameObject _ChestCover;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-       
-    }
+    private AudioSource _AudioSource;
+    private bool _LeftLockPopped = false;
+    private bool _RightLockPopped = false;
 
     // Update is called once per frame
     void Update()
     {
-        if ((_ChestLockLeft.activeSelf == false) || (_ChestLockRight.activeSelf == false))
+        if (_LeftLockPopped ||  _RightLockPopped)
         {
             _ChestCover.GetComponent<Rigidbody>().isKinematic = false;
         }
@@ -31,12 +30,21 @@ public class ChestLocksController : MonoBehaviour
 
     public void LockPickInsertedInLeftLock()
     {
+        _AudioSource = _ChestLockLeft.GetComponent<AudioSource>();        
+        _AudioSource.Play();
 
+        Destroy(_ChestLockLeft, 1.0f);
+        _LeftLockPopped = true;
+        
     }
 
     public void LockPickInsertedInRighttLock()
     {
+        _AudioSource = _ChestLockRight.GetComponent<AudioSource>();
+        _AudioSource.Play();
 
+        Destroy(_ChestLockRight, 1.0f);
+        _RightLockPopped = true;
     }
 
 }
