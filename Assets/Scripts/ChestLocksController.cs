@@ -22,7 +22,7 @@ public class ChestLocksController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_LeftLockPopped ||  _RightLockPopped)
+        if (_LeftLockPopped && _RightLockPopped)
         {
             _ChestCover.GetComponent<Rigidbody>().isKinematic = false;
         }

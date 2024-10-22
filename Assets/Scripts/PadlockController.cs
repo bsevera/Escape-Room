@@ -16,15 +16,35 @@ public class PadlockController : MonoBehaviour
 
     private int _KeysInserted = 0;
 
-    public void KeyInserted()
+    public void Update()
     {
-        _KeysInserted++;
-        
         if (_KeysInserted == 2)
         {
             DisablePadlocksAndKeys();
         }
     }
+
+    public void KeyInsertedTopLock()
+    {
+        _KeysInserted++;
+        PadLock1.GetComponent<AudioSource>().Play();
+    }
+
+    public void KeyInsertedBottomLock()
+    {
+        _KeysInserted++;
+        PadLock2.GetComponent<AudioSource>().Play();
+    }
+
+    //public void KeyInserted()
+    //{
+    //    _KeysInserted++;
+
+    //    if (_KeysInserted == 2)
+    //    {
+    //        DisablePadlocksAndKeys();
+    //    }
+    //}
 
     public void KeyRemoved()
     {
@@ -33,10 +53,15 @@ public class PadlockController : MonoBehaviour
 
     private void DisablePadlocksAndKeys()
     {
-        PadLock1.SetActive(false);
-        PadLock2.SetActive(false);
+        Destroy(PadLock1, 1.2f);
+        Destroy(PadLock2, 1.2f);
 
-        Key1.SetActive(false);
-        Key2.SetActive(false);
+        //PadLock1.SetActive(false);
+        //PadLock2.SetActive(false);
+
+        Destroy(Key1, 1.2f);
+        Destroy(Key2, 1.2f);
+        //Key1.SetActive(false);
+        //Key2.SetActive(false);
     }
 }
