@@ -12,8 +12,10 @@ public class BarbedWire : MonoBehaviour
 
     public void ClipWire()
     {
-        //_audioSource.Play();        
-        this.gameObject.SetActive(false);
+        _audioSource.Play();
+        Destroy(this.gameObject, 0.3f);
     }
+
+    
     
 }
