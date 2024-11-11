@@ -23,7 +23,6 @@ public class ZURNLetter : MonoBehaviour
         _AudioSource = _DrainGrate.GetComponent<AudioSource>();
     }
 
-
     public void IlluminateLetter()
     {
         Debug.Log("Illuminate Letter" + _letter.text.ToString());
@@ -43,4 +42,21 @@ public class ZURNLetter : MonoBehaviour
     {
         _letter.alpha = 0;
     }
+
+    //public void OnTriggerEnter(Collider other)
+    //{
+    //    Debug.Log("OnTriggerEnter");
+
+    //    if (other.tag == "Flashlight")
+    //    {
+    //        Debug.Log("Setting letter visibility");
+    //        _letter.alpha = 42;
+    //    }
+    //}
+
+    //public void OnTriggerExit(Collider other)
+    //{
+    //    _letter.alpha = 0;
+    //}
+
 }
