@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -17,15 +18,23 @@ public class Flashlight : MonoBehaviour
 
     private bool _isBeingHeld = false;
     private bool _lightIsOn = false;
+    private int _batteryCount = 0;
 
     private GameObject _lastIlluminated = null;
+
+    XRSocketInteractor _si;
+
+    private void Start()
+    {
+        _si = GetComponent<XRSocketInteractor>();
+    }
 
     // Update is called once per frame
     void Update()
     {
         if (_isBeingHeld)
         {           
-            if (Input.GetButtonUp("Fire1"))
+            if (Input.GetButtonUp("Fire1") && _batteryCount == 2)
             {
                 if (!_lightIsOn)
                 {
@@ -36,7 +45,9 @@ public class Flashlight : MonoBehaviour
                 {                    
                     _pointLight.SetActive(false);
                     _lightIsOn = false;
-                    HideLetter(_lastIlluminated);
+
+                    if (_lastIlluminated != null)
+                        HideLetter(_lastIlluminated);
                 }
             }
         }
@@ -84,4 +95,17 @@ public class Flashlight : MonoBehaviour
         _isBeingHeld = false;
     }
 
+    public void AddBattery()
+    {
+        IXRSelectInteractable objName = _si.GetOldestInteractableSelected();
+
+        _batteryCount++;
+        Debug.Log(objName.transform.name + " in socket of " + transform.name);
+        GameObject objToDestroy = GameObject.Find(objName.transform.name);
+
+        if (objToDestroy != null)
+        {
+            Destroy(objToDestroy);
+        }
+    }
 }
