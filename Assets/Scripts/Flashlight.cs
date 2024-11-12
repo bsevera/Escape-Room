@@ -102,10 +102,13 @@ public class Flashlight : MonoBehaviour
         _batteryCount++;
         Debug.Log(objName.transform.name + " in socket of " + transform.name);
         GameObject objToDestroy = GameObject.Find(objName.transform.name);
+        AudioSource audioSource = objToDestroy.GetComponent<AudioSource>();
 
         if (objToDestroy != null)
         {
-            Destroy(objToDestroy);
+            audioSource.Play();
+            Destroy(objToDestroy, 0.5f);
+            
         }
     }
 }
