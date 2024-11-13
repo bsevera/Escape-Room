@@ -99,8 +99,7 @@ public class Flashlight : MonoBehaviour
     {
         IXRSelectInteractable objName = _si.GetOldestInteractableSelected();
 
-        _batteryCount++;
-        Debug.Log(objName.transform.name + " in socket of " + transform.name);
+        _batteryCount++;        
         GameObject objToDestroy = GameObject.Find(objName.transform.name);
         AudioSource audioSource = objToDestroy.GetComponent<AudioSource>();
 
