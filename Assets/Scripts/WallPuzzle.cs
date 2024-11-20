@@ -34,6 +34,7 @@ public class WallPuzzle : MonoBehaviour
     {
         _elapsedTime = 1.0f;        
         _isPlaying = true;
+        _timer = 0;
     }
 
     public void PlayFirstAnimation()
@@ -42,18 +43,28 @@ public class WallPuzzle : MonoBehaviour
         {
             SetPlaybackValues();
             _playableDirector.Play();
+            _animation1Played = true;
         }
     }
 
     public void PlaySecondAnimation()
     {
-        SetPlaybackValues();
-        _playableDirector.Play();        
+        Debug.Log("WallPuzzle::PlaySecondAnimation");
+        if (!_animation2Played)
+        {
+            SetPlaybackValues();
+            _playableDirector.Play();
+            _animation2Played = true;
+        }
     }
 
     public void PlayThirdAnimation()
     {
-        SetPlaybackValues();
-        _playableDirector.Play();        
+        if(!_animation3Played)
+        {
+            SetPlaybackValues();
+            _playableDirector.Play();
+            _animation3Played = true;
+        }
     }
 }
