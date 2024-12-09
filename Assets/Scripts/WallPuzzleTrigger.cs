@@ -28,4 +28,15 @@ public class WallPuzzleTrigger : MonoBehaviour
         }            
         
     }
+
+    public void AnimateWall()
+    {
+       
+            GameObject gobj = GameObject.Find("Wall Puzzle");
+            if (gobj != null)
+            {
+                gobj.GetComponent<WallPuzzle>().PlayFirstAnimation();
+            }
+            //_wallPuzzle.GetComponent<WallPuzzle>().PlayFirstAnimation();
+    }
 }
