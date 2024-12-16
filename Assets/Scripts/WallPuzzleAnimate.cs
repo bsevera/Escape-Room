@@ -53,7 +53,7 @@ public class WallPuzzleAnimate : MonoBehaviour
                     _wallPuzzle.GetComponent<WallPuzzle>().PlaySecondAnimation();
                     break;
                 case 3:
-                    _wallPuzzle.GetComponent<WallPuzzle>().PlaySecondAnimation();
+                    _wallPuzzle.GetComponent<WallPuzzle>().PlayThirdAnimation();
                     break;
 
             }
