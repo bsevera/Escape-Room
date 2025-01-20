@@ -25,13 +25,13 @@ public class ZURNLetter : MonoBehaviour
 
     public void IlluminateLetter()
     {
-        Debug.Log("Illuminate Letter" + _letter.text.ToString());
+        //Debug.Log("Illuminate Letter" + _letter.text.ToString());
         Color tmpColor = _letter.color;
         _letter.alpha = 42;
 
         if (!_LetterFound)
         {
-            Debug.Log("Letter '" + _letter.text.ToString() + "' was found");
+            //Debug.Log("Letter '" + _letter.text.ToString() + "' was found");
             _LetterFound = true;
             _DrainGrateLock.EnableLetter(_letter.text);
             _AudioSource.time = 1;

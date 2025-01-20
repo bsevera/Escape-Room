@@ -1,9 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.XR.CoreUtils;
 using UnityEngine;
 
 public class WallPuzzleAnimate : MonoBehaviour
 {
+    [SerializeField]
+    GameObject _pedestal;
+
+    float _pedRotDirection = 0;
+    float _rotateSpeed = 3f;
 
     GameObject _wallPuzzle = null;
     float _wheelValue = 0;
@@ -20,23 +26,27 @@ public class WallPuzzleAnimate : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_wheelValue <= -0.5 && !_firstAnimationPlayed)
-        {
-            _wallPuzzle.GetComponent<WallPuzzle>().PlayFirstAnimation();
-            _firstAnimationPlayed = true;
-        }
+        //if (_wheelValue <= -0.5 && !_firstAnimationPlayed)
+        //{
+        //    _wallPuzzle.GetComponent<WallPuzzle>().PlayFirstAnimation();
+        //    _firstAnimationPlayed = true;
+        //}
 
-        if (_wheelValue <= -1.0 && _firstAnimationPlayed && !_secondAnimationPlayed)
-        {
-            _wallPuzzle.GetComponent<WallPuzzle>().PlaySecondAnimation();
-            _secondAnimationPlayed = true;
-        }
+        //if (_wheelValue <= -1.0 && _firstAnimationPlayed && !_secondAnimationPlayed)
+        //{
+        //    _wallPuzzle.GetComponent<WallPuzzle>().PlaySecondAnimation();
+        //    _secondAnimationPlayed = true;
+        //}
 
         //if (_wheelValue <= -1.5 && _firstAnimationPlayed && _secondAnimationPlayed && !_thirdAnimationPlayed)
         //{
         //    _wallPuzzle.GetComponent<WallPuzzle>().PlayThirdAnimation();
         //    _thirdAnimationPlayed = true;
         //}
+
+        if (_pedRotDirection != 0)
+            _pedestal.transform.Rotate(Vector3.up, _pedRotDirection * _rotateSpeed * Time.deltaTime);
+
 
     }
 
@@ -53,7 +63,7 @@ public class WallPuzzleAnimate : MonoBehaviour
                     _wallPuzzle.GetComponent<WallPuzzle>().PlaySecondAnimation();
                     break;
                 case 3:
-                    _wallPuzzle.GetComponent<WallPuzzle>().PlayThirdAnimation();
+                    _wallPuzzle.GetNamedChild("ForceField").SetActive(false);
                     break;
 
             }
@@ -71,6 +81,13 @@ public class WallPuzzleAnimate : MonoBehaviour
                 _wheelValue = value;
             //_wallPuzzle.GetComponent<WallPuzzle>().PlayFirstAnimation();
         } 
+    }
+
+    public void RotatePedestal(float direction)
+    {
+        if ((direction <= -0.1) || (direction >= -0.1))
+            _pedRotDirection = direction;
+
     }
 
 }
