@@ -9,7 +9,8 @@ public class WallPuzzleAnimate : MonoBehaviour
     GameObject _pedestal;
 
     float _pedRotDirection = 0;
-    float _rotateSpeed = 3f;
+    float _rotateSpeed = 1f;
+    
 
     GameObject _wallPuzzle = null;
     float _wheelValue = 0;
